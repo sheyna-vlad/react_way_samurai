@@ -3,14 +3,13 @@ import s from './Dialogs.module.css';
 import {DialogItem} from './DialgItem/DialogsItem';
 import {Message} from "./Message/Message";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../Redux/dialogs-reducer";
-import {PropsDialogType, PropsStoreType} from "../../Redux/store";
+import { PropsStoreType} from "../../Redux/store";
 
-export type PropsDialogsType = {
-    dialog: Array<PropsDialogType>
-    messages: Array<PropsMessagesType>
-    newMessageBody: string
+
+export type PropsDialogType = {
+    id: string
+    name: string
 }
-
 
 export type PropsMessagesType = {
     id: string
@@ -25,11 +24,11 @@ export type PropsMessageType = {
     message: string
 }
 
-export type DialogsProps = {
+export type PropsDialogsType = {
     store: PropsStoreType
 }
 
-export function Dialogs(props: DialogsProps) {
+export function Dialogs(props: PropsDialogsType) {
 
     let dialogsElement = props.store.getState().DialogsPage.dialog.map(t => <DialogItem name={t.name} id={t.id}/>);
     let messageElement = props.store.getState().DialogsPage.messages.map(t => <Message message={t.message}/>);

@@ -1,37 +1,32 @@
 import {v1} from "uuid";
-import {PropsDialogsType} from "../components/Dialogs/Dialogs";
+import {PropsDialogType, PropsMessagesType} from "../components/Dialogs/Dialogs";
 import profileReducer, {addPostActionCreator, updateNewPostTextCreator} from "./profile-reducer";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
-
-
+import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import {PropsPostType} from "../components/Profile/MyPosts/Post/Post";
+import sidebarReducer from "./sidebar-reducer";
 
 
 export type PropsStateType = {
-    profilePage: ProfileType
-    DialogsPage: PropsDialogsType
+    profilePage: ProfilePageType
+    DialogsPage: DialogsType
     sidebar: object
 }
-
-export type PropsDialogType = {
-    id: string
-    name: string
+export type DialogsType = {
+    dialog: Array<PropsDialogType>
+    messages: Array<PropsMessagesType>
+    newMessageBody: string
 }
-export type PropsPostType = {
-    id: string
-    message: string
-    likesCount: number
-}
-export type ProfileType = {
+export type ProfilePageType = {
     posts: Array<PropsPostType>
     newPostText: string
 }
+
 
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof updateNewPostTextCreator> |
     ReturnType<typeof sendMessageCreator> |
     ReturnType<typeof updateNewMessageBodyCreator>
-
 
 
 export type PropsStoreType = {
@@ -69,9 +64,9 @@ export let store: PropsStoreType = {
                 {id: v1(), name: 'Viktor'},
                 {id: v1(), name: 'Sasha'}
             ],
-            newMessageBody: '';
+            newMessageBody: ''
         },
-        sidebar:{},
+        sidebar: {},
     },
     _callSubscriber() {
         console.log('State was changed ')
@@ -87,8 +82,8 @@ export let store: PropsStoreType = {
     dispatch(action: ActionsTypes) {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.DialogsPage = profileReducer(this._state.DialogsPage, action)
-        this._state.sidebar = profileReducer(this._state.sidebar, action)
+        this._state.DialogsPage = dialogsReducer(this._state.DialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._callSubscriber();
 
 

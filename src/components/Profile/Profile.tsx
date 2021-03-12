@@ -1,28 +1,25 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ActionsTypes, PropsPostType} from "../../Redux/store";
+import {ActionsTypes} from "../../Redux/store";
+import {PropsPostType} from "./MyPosts/Post/Post";
 
 
-type PropsTypeProfile = {
+type PropsProfileType = {
     posts: Array<PropsPostType>
     newPostText: string
-    // updateNewPostText: (newText: string) => void
-    // addPost: () => void
     dispatch: (action: ActionsTypes) => void
 }
 
-const Profile = (props: PropsTypeProfile) => {
+const Profile = (props: PropsProfileType) => {
 
 
     return <div>
         <ProfileInfo/>
         <MyPosts
             posts={props.posts}
-            dispatch={props.dispatch}
             newPostText={props.newPostText}
-            // updateNewPostText={props.updateNewPostText}
-            // addPost={props.addPost}
+            dispatch={props.dispatch}
         />
 
     </div>

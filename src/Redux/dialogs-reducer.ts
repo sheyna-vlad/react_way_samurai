@@ -1,9 +1,10 @@
 import {v1} from "uuid";
+import {DialogsType} from "./store";
 
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 export const SEND_MESSAGE = 'SEND-MESSAGE';
 
-const dialogsReducer = (state, action) => {
+const dialogsReducer = (state: DialogsType, action: any) => {
 
     switch (action.type) {
 

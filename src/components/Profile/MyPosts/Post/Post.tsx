@@ -1,12 +1,14 @@
 import React from 'react';
 import s from './Post.module.css';
 
-type PostType = {
+
+export type PropsPostType = {
+    id: string
     message: string
     likesCount: number
 }
 
-function Post(props: PostType) {
+function Post(props: PropsPostType) {
     return (
         <div className={s.item}>
             <img

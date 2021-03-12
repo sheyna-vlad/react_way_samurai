@@ -1,10 +1,11 @@
 import {v1} from "uuid";
-import {PropsPostType} from "./store";
+import {ProfilePageType} from "./store";
+import {PropsPostType} from "../components/Profile/MyPosts/Post/Post";
 
 export const ADD_POST = 'ADD_POST';
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const profileReducer = (state, action) => {
+const profileReducer = (state: ProfilePageType, action: any) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PropsPostType = {

@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import Post from "./Post/Post";
+import Post, { PropsPostType } from "./Post/Post";
 import { addPostActionCreator,  updateNewPostTextCreator} from "../../../Redux/profile-reducer";
-import {ActionsTypes, PropsPostType} from "../../../Redux/store";
+import {ActionsTypes} from "../../../Redux/store";
 
 export type PropsMyPostsType = {
     posts: Array<PropsPostType>
@@ -10,6 +10,10 @@ export type PropsMyPostsType = {
     dispatch: (action: ActionsTypes) => void
 
 }
+
+
+
+
 
 const MyPosts = (props: PropsMyPostsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -46,7 +50,7 @@ const MyPosts = (props: PropsMyPostsType) => {
                 <button onClick={addPostHandler}>Add post</button>
             </div>
             <div className={s.posts}>
-                {props.posts.map(t => <Post key={t.id} message={t.message} likesCount={t.likesCount}/>)}
+                {props.posts.map(t => <Post key={t.id} id={t.id} message={t.message} likesCount={t.likesCount}/>)}
             </div>
         </div>
     );
