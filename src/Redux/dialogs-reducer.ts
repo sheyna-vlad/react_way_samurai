@@ -4,7 +4,25 @@ import {DialogsType} from "./store";
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 export const SEND_MESSAGE = 'SEND-MESSAGE';
 
-const dialogsReducer = (state: DialogsType, action: any) => {
+const initialState =  {
+    messages: [
+        {id: v1(), message: 'Hi'},
+        {id: v1(), message: 'Helo'},
+        {id: v1(), message: 'My job'},
+        {id: v1(), message: 'My  perfect job'},
+        {id: v1(), message: 'My  new job'},
+    ],
+    dialog: [
+        {id: v1(), name: 'Dimych'},
+        {id: v1(), name: 'Andrey'},
+        {id: v1(), name: 'Sveta'},
+        {id: v1(), name: 'Viktor'},
+        {id: v1(), name: 'Sasha'}
+    ],
+    newMessageBody: ''
+}
+
+const dialogsReducer = (state: DialogsType = initialState, action: any) => {
 
     switch (action.type) {
 

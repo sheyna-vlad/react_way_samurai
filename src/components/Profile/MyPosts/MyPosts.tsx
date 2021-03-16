@@ -7,8 +7,8 @@ import {ActionsTypes} from "../../../Redux/store";
 export type PropsMyPostsType = {
     posts: Array<PropsPostType>
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
-
+    updateNewPostText: ( text: string) => void
+    addPost: () => void
 }
 
 
@@ -20,7 +20,7 @@ const MyPosts = (props: PropsMyPostsType) => {
 
     let addPostHandler = () => {
         if (newPostElement.current) {
-            props.dispatch(addPostActionCreator());
+            props.addPost();
             newPostElement.current.value = '';
         }
     }
@@ -28,11 +28,11 @@ const MyPosts = (props: PropsMyPostsType) => {
     let onPostChangeHandler = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
+
             if (text.trim() !== '') {
-                props.dispatch(updateNewPostTextCreator(text));
 
+                props.updateNewPostText(text);
             }
-
         }
     }
     return (

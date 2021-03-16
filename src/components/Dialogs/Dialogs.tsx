@@ -3,7 +3,7 @@ import s from './Dialogs.module.css';
 import {DialogItem} from './DialgItem/DialogsItem';
 import {Message} from "./Message/Message";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../Redux/dialogs-reducer";
-import { PropsStoreType} from "../../Redux/store";
+import {DialogsType, PropsStoreType} from "../../Redux/store";
 
 
 export type PropsDialogType = {
@@ -25,20 +25,25 @@ export type PropsMessageType = {
 }
 
 export type PropsDialogsType = {
-    store: PropsStoreType
+    updateNewMessageBody: (body: string) => void
+    sendMessage: () => void
+    dialog: Array<PropsDialogType>
+    messages: Array<PropsMessagesType>
+    newMessageBody: string
 }
 
 export function Dialogs(props: PropsDialogsType) {
 
-    let dialogsElement = props.store.getState().DialogsPage.dialog.map(t => <DialogItem name={t.name} id={t.id}/>);
-    let messageElement = props.store.getState().DialogsPage.messages.map(t => <Message message={t.message}/>);
-    let newMessageBody = props.store.getState().DialogsPage.newMessageBody;
+    let dialogsElement = props.dialog.map(t => <DialogItem name={t.name} id={t.id}/>);
+    let messageElement = props.messages.map(t => <Message message={t.message}/>);
+    let newMessageBody = props.newMessageBody;
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage();
     }
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.currentTarget.value;
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+
+        props.updateNewMessageBody(body);
     }
 
     return (
@@ -54,7 +59,7 @@ export function Dialogs(props: PropsDialogsType) {
                         value={newMessageBody}
                         placeholder='Enter your message'
                         onChange={onNewMessageChange}
-                    ></textarea></div>
+                    /></div>
                     <div>
                         <button onClick={onSendMessageClick}>Send</button>
                     </div>
