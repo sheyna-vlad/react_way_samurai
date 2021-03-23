@@ -4,18 +4,18 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {Store} from "redux";
 
 
-type PropsProfileType = {
+type OwnPropsType = {
     store: Store
 }
 
-const Profile = (props: PropsProfileType) => {
+const Profile = (props: OwnPropsType) => {
 
 
     return <div>
         <ProfileInfo/>
         <MyPostsContainer
-            store={props.store}        />
-
+            store={props.store}
+        />
     </div>
 }
 

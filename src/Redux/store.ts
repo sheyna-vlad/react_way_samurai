@@ -1,7 +1,6 @@
 import {v1} from "uuid";
-import {PropsDialogType, PropsMessagesType} from "../components/Dialogs/Dialogs";
 import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
-import dialogsReducer, {DialogsType, sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import dialogsReducer, {actions, DialogsType} from "./dialogs-reducer";
 import {PropsPostType} from "../components/Profile/MyPosts/Post/Post";
 import sidebarReducer from "./sidebar-reducer";
 
@@ -21,8 +20,8 @@ export type ProfilePageType = {
 export type ActionsTypes =
     ReturnType<typeof addPostAC> |
     ReturnType<typeof updateNewPostTextAC> |
-    ReturnType<typeof sendMessageCreator> |
-    ReturnType<typeof updateNewMessageBodyCreator>
+    ReturnType<typeof actions.sendMessageCreator> |
+    ReturnType<typeof actions.updateNewMessageBodyCreator>
 
 
 export type PropsStoreType = {

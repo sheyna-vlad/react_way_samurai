@@ -33,8 +33,8 @@ export type PropsMessageType = {
 
 export function Dialogs(props: PropsDialogsType) {
 
-    let dialogsElement = props.dialogsPage.dialog.map(t => <DialogItem name={t.name} id={t.id}/>);
-    let messageElement = props.dialogsPage.messages.map(t => <Message message={t.message}/>);
+    let dialogsElement = props.dialogsPage.dialog.map(t => <DialogItem name={t.name} key={t.id} id={t.id}/>);
+    let messageElement = props.dialogsPage.messages.map(t => <Message message={t.message} key={t.id}/>);
     let newMessageBody = props.dialogsPage.newMessageBody;
 
     let onSendMessageClick = () => {
