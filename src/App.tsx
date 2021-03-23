@@ -6,9 +6,10 @@ import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route} from "react-router-dom";
 import { PropsStoreType} from "./Redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Store} from "redux";
 
 export type PropsAppType = {
-    store: PropsStoreType
+    store: Store
 }
 
 function App(props: PropsAppType) {

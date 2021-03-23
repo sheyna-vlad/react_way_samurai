@@ -15,7 +15,7 @@ const initialState =  {
     newPostText: 'it-kamasutra'
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: any) => {
+const profileReducer = (state: ProfilePageType = initialState, action: ActionsType):ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PropsPostType = {
@@ -34,9 +34,19 @@ const profileReducer = (state: ProfilePageType = initialState, action: any) => {
             return state;
     }
 
-
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST} as const)
-export const updateNewPostTextCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+type ActionsType = AddPostACType | UpdateNewPostTextACType
+
+type AddPostACType = {
+    type:  typeof ADD_POST,
+}
+type UpdateNewPostTextACType = {
+    type: typeof UPDATE_NEW_POST_TEXT,
+    newText: string
+}
+
+
+export const addPostAC = ():AddPostACType => ({type: ADD_POST} as const)
+export const updateNewPostTextAC = (text: string):UpdateNewPostTextACType => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 export default profileReducer;

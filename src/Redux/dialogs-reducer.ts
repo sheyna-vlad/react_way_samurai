@@ -1,8 +1,15 @@
 import {v1} from "uuid";
-import {DialogsType} from "./store";
+import {PropsDialogType, PropsMessagesType} from "../components/Dialogs/Dialogs";
 
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 export const SEND_MESSAGE = 'SEND-MESSAGE';
+
+export type DialogsType = {
+    dialog: Array<PropsDialogType>
+    messages: Array<PropsMessagesType>
+    newMessageBody: string
+}
+
 
 const initialState =  {
     messages: [
@@ -11,18 +18,22 @@ const initialState =  {
         {id: v1(), message: 'My job'},
         {id: v1(), message: 'My  perfect job'},
         {id: v1(), message: 'My  new job'},
-    ],
+    ] as Array<PropsMessagesType>,
     dialog: [
         {id: v1(), name: 'Dimych'},
         {id: v1(), name: 'Andrey'},
         {id: v1(), name: 'Sveta'},
         {id: v1(), name: 'Viktor'},
         {id: v1(), name: 'Sasha'}
-    ],
+    ] as Array<PropsDialogType>,
+
     newMessageBody: ''
 }
 
-const dialogsReducer = (state: DialogsType = initialState, action: any) => {
+export type initialStateType = typeof initialState
+
+
+const dialogsReducer = (state: initialStateType = initialState, action: any):initialStateType => {
 
     switch (action.type) {
 
@@ -43,5 +54,5 @@ const dialogsReducer = (state: DialogsType = initialState, action: any) => {
 }
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
-export const updateNewMessageBodyCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
+export const updateNewMessageBodyCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body} as const)
 export default dialogsReducer;

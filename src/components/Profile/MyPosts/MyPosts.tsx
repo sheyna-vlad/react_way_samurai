@@ -1,15 +1,9 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import Post, { PropsPostType } from "./Post/Post";
-import { addPostActionCreator,  updateNewPostTextCreator} from "../../../Redux/profile-reducer";
-import {ActionsTypes} from "../../../Redux/store";
+import Post from "./Post/Post";
+import {PropsMyPostsType} from "./MyPostsContainer";
 
-export type PropsMyPostsType = {
-    posts: Array<PropsPostType>
-    newPostText: string
-    updateNewPostText: ( text: string) => void
-    addPost: () => void
-}
+
 
 
 
@@ -31,7 +25,7 @@ const MyPosts = (props: PropsMyPostsType) => {
 
             if (text.trim() !== '') {
 
-                props.updateNewPostText(text);
+                props.onPostChange(text);
             }
         }
     }
@@ -42,7 +36,7 @@ const MyPosts = (props: PropsMyPostsType) => {
             <div>
                 <textarea
                     ref={newPostElement}
-                    value={props.newPostText}
+                    value={props.profilePage.newPostText}
                     onChange={onPostChangeHandler}
                 />
             </div>
@@ -50,7 +44,7 @@ const MyPosts = (props: PropsMyPostsType) => {
                 <button onClick={addPostHandler}>Add post</button>
             </div>
             <div className={s.posts}>
-                {props.posts.map(t => <Post key={t.id} id={t.id} message={t.message} likesCount={t.likesCount}/>)}
+                {props.profilePage.posts.map(t => <Post key={t.id} id={t.id} message={t.message} likesCount={t.likesCount}/>)}
             </div>
         </div>
     );
