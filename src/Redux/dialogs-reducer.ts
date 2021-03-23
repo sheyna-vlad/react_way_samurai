@@ -1,5 +1,6 @@
 import {v1} from "uuid";
 import {PropsDialogType, PropsMessagesType} from "../components/Dialogs/Dialogs";
+import {InferActionTypes} from "./redux-store";
 
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 export const SEND_MESSAGE = 'SEND-MESSAGE';
@@ -33,7 +34,7 @@ const initialState =  {
 export type initialStateType = typeof initialState
 
 
-const dialogsReducer = (state: initialStateType = initialState, action: any):initialStateType => {
+const dialogsReducer = (state: initialStateType = initialState, action: ActionsType):initialStateType => {
 
     switch (action.type) {
 
@@ -53,6 +54,11 @@ const dialogsReducer = (state: initialStateType = initialState, action: any):ini
 
 }
 
-export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
-export const updateNewMessageBodyCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body} as const)
+type ActionsType = InferActionTypes<typeof actions>
+ export const actions = {
+    sendMessageCreator : () => ({type: SEND_MESSAGE} as const),
+    updateNewMessageBodyCreator : (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body} as const)
+}
+
+
 export default dialogsReducer;

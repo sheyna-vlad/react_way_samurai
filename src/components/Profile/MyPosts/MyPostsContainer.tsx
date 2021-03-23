@@ -1,57 +1,31 @@
 import React from 'react';
-import s from './MyPosts.module.css';
-import Post, {PropsPostType} from "./Post/Post";
 import {addPostAC, updateNewPostTextAC} from "../../../Redux/profile-reducer";
-import {ActionsTypes, ProfilePageType, PropsStoreType} from "../../../Redux/store";
+import {ProfilePageType} from "../../../Redux/store";
 import MyPosts from "./MyPosts";
-import {Dispatch, Store} from "redux";
+import {Dispatch} from "redux";
 import {connect} from "react-redux";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../Redux/dialogs-reducer";
-import {ReduxStoreType} from "../../../Redux/redux-store";
-
-export type PropsMyPostsContainerType = {
-    store: Store
-}
+import {AppStateType} from "../../../Redux/redux-store";
 
 
-// const MyPostsContainer = (props: PropsMyPostsContainerType) => {
-//
-//     let addPost = () => {
-//             props.store.dispatch(addPostActionCreator());
-//     }
-//
-//     let onPostChange = (text: string) => {
-//                 props.store.dispatch(updateNewPostTextCreator(text));
-//     }
-//     return (
-//
-//        <MyPosts posts={props.store.getState().profilePage.posts}
-//                 newPostText={props.store.getState().profilePage.newPostText}
-//                 addPost={addPost}
-//                 updateNewPostText={onPostChange}
-//        />
-//     );
-// }
-
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     profilePage: ProfilePageType
 }
 
-type mapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     addPost: () => void,
     onPostChange: (text: string) => void
 }
 
-export type PropsMyPostsType = mapStateToPropsType & mapDispatchToPropsType
+export type PropsMyPostsType = MapStateToPropsType & MapDispatchToPropsType
 
-let mapStateToProps = (state: ReduxStoreType): mapStateToPropsType => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return ({
         profilePage: state.profilePage,
 
     });
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return ({
         addPost: () => {
             dispatch(addPostAC())
@@ -64,6 +38,6 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 }
 
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+const MyPostsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;

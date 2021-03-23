@@ -1,15 +1,10 @@
 import React from 'react';
-import {DialogsType, sendMessageCreator, updateNewMessageBodyCreator} from "../../Redux/dialogs-reducer";
+import {actions, DialogsType} from "../../Redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
-import {Dispatch, Store} from "redux";
+import {Dispatch} from "redux";
 import {connect} from "react-redux";
-import {ReduxStoreType} from "../../Redux/redux-store";
+import {AppStateType} from "../../Redux/redux-store";
 
-
-export type PropsDialogType = {
-    id: string
-    name: string
-}
 
 export type PropsMessagesType = {
     id: string
@@ -20,35 +15,10 @@ export type PropsDialogItemType = {
     name: string
     id: string
 }
-export type PropsMessageType = {
-    message: string
-}
 
 
 
-//
-//
-//  function DialogsContainer(props: PropsDialogsType) {
-//
-//     let state = props.store.getState()
-//
-//
-//     let onSendMessageClick = () => {
-//         props.store.dispatch(sendMessageCreator())
-//     }
-//     let onNewMessageChange = (body: string) => {
-//         props.store.dispatch(updateNewMessageBodyCreator(body))
-//     }
-//
-//     return (
-//         <Dialogs messages={state.DialogsPage.messages}
-//                  dialog={state.DialogsPage.dialog}
-//                  newMessageBody={state.DialogsPage.newMessageBody}
-//                  sendMessage={onSendMessageClick}
-//                  updateNewMessageBody={onNewMessageChange}
-//         />
-//     );
-// }
+
 
 export type PropsDialogsType = mapStateToPropsType & mapDispatchToPropsType;
 
@@ -61,7 +31,7 @@ type mapDispatchToPropsType = {
 }
 
 
-let mapStateToProps = (state: ReduxStoreType): mapStateToPropsType => {
+let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return ({
         dialogsPage: state.DialogsPage
 
@@ -71,10 +41,10 @@ let mapStateToProps = (state: ReduxStoreType): mapStateToPropsType => {
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return ({
         sendMessage: () => {
-            dispatch(sendMessageCreator())
+            dispatch(actions.sendMessageCreator())
         },
         updateNewMessageBody: (body: string) => {
-            dispatch(updateNewMessageBodyCreator(body))
+            dispatch(actions.updateNewMessageBodyCreator(body))
         },
     });
 }
