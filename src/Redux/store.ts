@@ -1,13 +1,13 @@
 import {v1} from "uuid";
 import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
-import dialogsReducer, {actions, DialogsType} from "./dialogs-reducer";
+import dialogsReducer, {actions} from "./dialogs-reducer";
 import {PropsPostType} from "../components/Profile/MyPosts/Post/Post";
 import sidebarReducer from "./sidebar-reducer";
 
 
 export type PropsStateType = {
     profilePage: ProfilePageType
-    DialogsPage: DialogsType
+    DialogsPage: any
     sidebar: object
 }
 
@@ -74,7 +74,7 @@ export let store: PropsStoreType = {
         return this._state;
     },
 
-    dispatch(action: ActionsTypes) {
+    dispatch(action: any) {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.DialogsPage = dialogsReducer(this._state.DialogsPage, action)

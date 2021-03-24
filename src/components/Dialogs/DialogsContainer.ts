@@ -1,7 +1,6 @@
-import React from 'react';
-import {actions, DialogsType} from "../../Redux/dialogs-reducer";
+import {actions, DialogsInitialStateType} from "../../Redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
-import {Dispatch, Store} from "redux";
+import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/redux-store";
 
@@ -16,18 +15,14 @@ export type PropsDialogItemType = {
     id: string
 }
 
-type OwnPropsType = {
-    store: Store
-}
 
 
 
 
-
-export type PropsDialogsType = MapStateToPropsType & MapDispatchToPropsType & OwnPropsType;
+export type PropsDialogsType = MapStateToPropsType & MapDispatchToPropsType;
 
 type MapStateToPropsType = {
-    dialogsPage: DialogsType
+    dialogsPage: DialogsInitialStateType
 }
 type MapDispatchToPropsType = {
     sendMessage: () => void
@@ -54,7 +49,7 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 }
 
 
-const DialogsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, OwnPropsType, AppStateType>(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 
 export default DialogsContainer;

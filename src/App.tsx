@@ -5,13 +5,10 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {Store} from "redux";
+import UsersContainer from "./components/Users/UsersContainer";
 
-export type PropsAppType = {
-    store: Store
-}
 
-function App(props: PropsAppType) {
+function App() {
     return (
         <BrowserRouter>
             <div className='app-wrapper '>
@@ -20,8 +17,9 @@ function App(props: PropsAppType) {
 
 
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
-                    <Route path='/profile' render={() => <Profile store={props.store}/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer />}/>
+                    <Route path='/profile' render={() => <Profile />}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
                 </div>
             </div>
         </BrowserRouter>

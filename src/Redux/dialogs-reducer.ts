@@ -5,11 +5,6 @@ import {InferActionTypes} from "./redux-store";
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 export const SEND_MESSAGE = 'SEND-MESSAGE';
 
-export type DialogsType = {
-    dialog: Array<PropsDialogType>
-    messages: Array<PropsMessagesType>
-    newMessageBody: string
-}
 
 
 const initialState = {
@@ -31,10 +26,10 @@ const initialState = {
     newMessageBody: ''
 }
 
-export type initialStateType = typeof initialState
+export type DialogsInitialStateType = typeof initialState
 
 
-const dialogsReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
+const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionsType): DialogsInitialStateType => {
     switch (action.type) {
 
         case UPDATE_NEW_MESSAGE_BODY: {
