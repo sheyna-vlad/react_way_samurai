@@ -1,0 +1,25 @@
+.userCard {
+    display: flex;
+    border: 1px solid #262526;
+    border-radius: 3px;
+    width: 700px;
+    margin: 10px 0 0;
+}
+
+.userCardAvatar {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.userCardAvatar .userAvatar {
+    width: 100px;
+    filter: grayscale(100%);
+}
+
+.userCardName {
+    margin: 5px 0 5px;
+}
+
+.userCardButton {
+    margin-top: 10px;
+}

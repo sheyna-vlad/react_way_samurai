@@ -1,0 +1,41 @@
+.post {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #7F8084;
+    border-radius: 5px;
+}
+
+.post .info {
+    display: flex;
+}
+
+.avatar img {
+    border-radius: 50px;
+    width: 40px;
+}
+
+.about .name {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.about .time {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.post .body {
+    margin-top: 10px;
+}
+
+.postFooter {
+    margin-top: 10px;
+}
+
+.postFooter .likesCount {
+    margin-left: 5px;
+}
+
+.postFooter .likeIcon {
+    cursor: pointer;
+}

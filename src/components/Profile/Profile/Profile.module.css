@@ -1,0 +1,30 @@
+.info {
+    display: flex;
+}
+
+.avatarBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatarBlock img {
+    filter: grayscale(100%);
+    border-radius: 4px;
+}
+
+.profileInfoButton {
+    margin: 10px 0;
+}
+
+.profileInfoButton button {
+    width: 100%;
+}
+
+.description {
+    margin-left: 30px;
+}
+
+.nameAndStatus {
+    display: flex;
+    flex-direction: column;
+}

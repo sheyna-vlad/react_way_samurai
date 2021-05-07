@@ -1,0 +1,26 @@
+.button {
+    position: relative;
+    padding: 10px 20px;
+    background: #AFB2B7;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.button:hover {
+    background: #7F8084;
+    transition: background-color .3s ease-in-out;
+    cursor: pointer;
+}
+
+.button:active {
+    top: 1px;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+}

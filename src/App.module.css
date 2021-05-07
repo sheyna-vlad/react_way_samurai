@@ -1,0 +1,20 @@
+.app {
+    /*background: #F3F3F3;*/
+}
+
+.container {
+    max-width: 1000px;
+    height: 100vh;
+    margin: auto;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 10px;
+    background: #D7D8DA;
+    border-radius: 5px;
+}
