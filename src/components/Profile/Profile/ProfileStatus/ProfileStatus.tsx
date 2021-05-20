@@ -1,5 +1,4 @@
 import React, {ChangeEvent} from 'react'
-import classes from './ProfileStatus.module.css'
 
 type ProfileStatusType = {
     status: string
@@ -29,7 +28,7 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
         this.setState({
             status: e.currentTarget.value
         })
-
+ 
     }
 
     componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<{}>, snapshot?: any) {

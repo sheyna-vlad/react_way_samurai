@@ -62,7 +62,7 @@ export type ProfileActionTypes =
     | SetProfileActionType
     | SetProfileStatusActionType
 
-const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes): ProfilePageType => {
+const profileReducer = (state = initialState, action: ProfileActionTypes): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost: PostsType = {

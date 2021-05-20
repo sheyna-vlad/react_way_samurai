@@ -4,12 +4,13 @@ import MessagesItem from '../../components/Messanger/Messages/MessagesItem'
 import classes from './Messenger.module.css'
 import Button from '../../components/UI/Button/Button'
 import {MessengerType} from './MessengerContainer'
+import {Field, reduxForm} from "redux-form";
 
 export const Messenger: React.FC<MessengerType> = props => {
 
-    const Users = props.messenger.users.map(u => <UsersItem key={u.id} name={u.name} path={`/messenger/${u.id}`} />)
+    const Users = props.messenger.users.map(u => <UsersItem key={u.id} name={u.name} path={`/messenger/${u.id}`}/>)
 
-    const Messages = props.messenger.messages.map(m => <MessagesItem key={m.id} messageText={m.messageText} />)
+    const Messages = props.messenger.messages.map(m => <MessagesItem key={m.id} messageText={m.messageText}/>)
 
     const sendMessage = () => {
         props.sendMessage()
@@ -33,20 +34,45 @@ export const Messenger: React.FC<MessengerType> = props => {
                     {Users}
                 </div>
 
-                <div className={classes.messagesList}>
-                    {Messages}
+                {/*<div className={classes.messagesList}>*/}
+                {/*    {Messages}*/}
 
-                    <textarea
-                        value={props.messenger.newMessageText}
-                        onChange={textChange}
-                        onKeyPress={onKeyPressHandler}
-                    />
-                    <Button
-                        onClick={sendMessage}
-                        text="Send"
-                    />
-                </div>
+                {/*    <textarea*/}
+                {/*        value={props.messenger.newMessageText}*/}
+                {/*        onChange={textChange}*/}
+                {/*        onKeyPress={onKeyPressHandler}*/}
+                {/*    />*/}
+                {/*    <Button*/}
+                {/*        onClick={sendMessage}*/}
+                {/*        text="Send"*/}
+                {/*    />*/}
+                {/*</div>*/}
+                <AddMessageFormRedux/>
             </div>
         </div>
     )
 }
+
+
+const AddMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={classes.messagesList}>
+                {Messages}
+                <Field component={'textarea'} name={'newMessageText'} placeholderholder={'Enter your message'} />
+                <textarea
+                    value={props.messenger.newMessageText}
+                    onChange={textChange}
+                    onKeyPress={onKeyPressHandler}
+                />
+                <Button
+
+                    text="Send"
+                />
+            </div>
+        </form>
+    )
+}
+
+
+const AddMessageFormRedux = reduxForm({form:'dialogAddMessageForm'})(AddMessageForm);

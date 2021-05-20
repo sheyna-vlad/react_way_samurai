@@ -2,7 +2,7 @@ import React from 'react'
 import {Field, InjectedFormProps, reduxForm} from 'redux-form'
 
 type FormDataType = {
-    login: string
+    login : string
     password: string
     remember: boolean
 }
